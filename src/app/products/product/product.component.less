@@ -1,0 +1,36 @@
+.ui.card {
+  .image {
+    position: relative;
+    background: #ffffff;
+
+    .ui.floating.message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .description {
+    font-size: 1.25rem;
+  }
+
+  &:hover {
+    #cardImage {
+      opacity: 0.7;
+    }
+  }
+}
+
+.img-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.img-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

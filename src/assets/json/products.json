@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "name": "Oatmeal",
+    "description": "Hot and fluffy oatmeal & protein powder cake",
+    "price": 330.00,
+    "image": "oatmeal.jpg",
+    "isLimited": true,
+    "stock": 30
+  },
+  {
+    "id": 2,
+    "name": "WS license",
+    "description": "Rare WS license. No need for military email",
+    "price": 200.00,
+    "image": "ws.png",
+    "isLimited": false
+  },
+  {
+    "id": 3,
+    "name": "Coconut oil",
+    "description": "Good coconut to make oil for your bread",
+    "price": 100.00,
+    "image": "coconut.png",
+    "isLimited": true,
+    "stock": 5
+  },
+  {
+    "id": 4,
+    "name": "Beard exempt",
+    "description": "Your very own license to grow beard",
+    "price": 777.00,
+    "image": "beard.jpg",
+    "isLimited": true,
+    "stock": 10
+  },
+  {
+    "id": 5,
+    "name": "A day off",
+    "description": "1 day off work",
+    "price": 1000000.00,
+    "image": "freedom.png",
+    "isLimited": false
+  },
+  {
+    "id": 6,
+    "name": "JS book for beginners",
+    "description": "Digital javascript book to start coding your first js website",
+    "price": 330.00,
+    "image": "js-book.png",
+    "isLimited": false
+  }
+]

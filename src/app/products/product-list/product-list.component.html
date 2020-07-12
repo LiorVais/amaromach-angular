@@ -1,0 +1,3 @@
+<div id="cards-grid" class="ui cards four column stretched grid">
+    <app-product class="column" [isInStock]="productsService.isInStock(product)" *ngFor="let product of productsService.products$ | async" [product]="product"></app-product>
+</div>

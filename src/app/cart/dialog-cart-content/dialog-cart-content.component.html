@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+  <div class="ui small header">Your Shopping Cart</div>
+  <mat-divider></mat-divider>
+</div>
+<mat-dialog-content>
+  <div class="ui divided items">
+    <app-cart-item *ngFor="let cartItem of cartService.cartContent$ | async" [cartItem]="cartItem"
+                   class="item"></app-cart-item>
+  </div>
+
+  <p>Total Price: <i class="shekel icon"></i>{{cartService.getTotalPrice() | number : '.2'}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-dialog-close class="ui button black">continue shopping</button>
+  <button (click)="checkout()" class="ui right labeled icon button primary">checkout <i
+    class="icon shopping cart"></i>
+  </button>
+</mat-dialog-actions>

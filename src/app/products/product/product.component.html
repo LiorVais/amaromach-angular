@@ -1,0 +1,26 @@
+<div class="ui centered card">
+  <div class="image">
+    <img src="assets/images/{{product.image}}">
+    <div *ngIf="!isInStock" class="ui red floating message">
+      <div class="text center aligned">out of stock</div>
+    </div>
+  </div>
+  <div class="content">
+    <a class="header" [routerLink]="['/products', product.id]">{{product.name}}</a>
+    <div class="description">{{product.description}}</div>
+  </div>
+  <div class="extra content">
+    <p><i class="shekel icon"></i>{{product.price | number :'.2'}}</p>
+    <!--<div class="ui star rating" data-rating="3" data-max-rating="5"></div>-->
+    <div *ngIf="cartService.hasProduct(product);then remove else add"></div>
+    <ng-template #add>
+      <button class="ui right floated button primary" (click)="cartService.addToCart(product)" [disabled]="!isInStock">
+        Add to cart
+      </button>
+    </ng-template>
+    <ng-template #remove>
+      <button class="ui right floated button black" (click)="cartService.removeFromCart(product)">Remove from cart
+      </button>
+    </ng-template>
+  </div>
+</div>

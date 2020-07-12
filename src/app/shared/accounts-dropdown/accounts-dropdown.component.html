@@ -1,0 +1,60 @@
+<div class="ui floating dropdown right floated">
+  <div mat-button [matMenuTriggerFor]="menu" class="ui medium header inverted">
+    <div id="accounts-text" class="text custom-border">Account&Lists
+      <i class="dropdown icon"></i>
+    </div>
+  </div>
+  <mat-menu #menu="matMenu">
+    <div class="ui menu two column divided grid">
+      <div class="two column row">
+        <div class="column">
+          <div class="ui small header">Your Account</div>
+          <div class="ui link list">
+            <a class="item">SIGN IP</a>
+            <a class="item">SIGN UP</a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui small header">Your Lists</div>
+          <div class="ui link list">
+            <a class="item">Create New List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-menu>
+  <!--<mat-grid-list cols="2">
+    <mat-grid-tile>
+      <div class="ui small header">Your Account</div>
+      <div class="ui link list">
+        <a class="item">SIGN IP</a>
+        <a class="item">SIGN UP</a>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="ui small header">Your Lists</div>
+      <div class="ui link list">
+        <a class="item">Create New List</a>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>-->
+
+  <!--<mat-menu #menu="matMenu" class="ui menu two column relaxed divided grid transition hidden">
+    <div mat-menu-item class="two column row">
+      <div class="column">
+        <div class="ui small header">Your Account</div>
+        <div class="ui link list">
+          <a class="item">SIGN IP</a>
+          <a class="item">SIGN UP</a>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui small header">Your Lists</div>
+        <div class="ui link list">
+          <a class="item">Create New List</a>
+        </div>
+      </div>
+    </div>
+  </mat-menu>-->
+</div>
+

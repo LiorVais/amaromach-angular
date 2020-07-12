@@ -1,0 +1,12 @@
+  <div class="ui item">
+    <div class="ui medium image">
+      <img src="assets/images/{{product.image}}">
+    </div>
+    <div class="content">
+      <div class="ui header">{{product.name}}</div>
+      <div class="description">
+        <p><i class="shekel icon"></i>{{product.price | number :'.2'}}</p>
+        <p>{{product.description}}</p>
+      </div>
+    </div>
+  </div>

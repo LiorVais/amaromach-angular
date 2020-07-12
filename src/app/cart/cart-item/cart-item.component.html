@@ -1,0 +1,25 @@
+<div class="image">
+  <img src="assets/images/{{cartItem.product.image}}">
+</div>
+<div class="content">
+  <i class="ui large close icon link red right floated" (click)="cartService.removeFromCart(cartItem.product)"></i>
+  <a class="header">{{cartItem.product.name}}</a>
+  <div class="description">
+    <p>{{cartItem.product.description}}</p>
+    <p><i class="shekel icon"></i>{{cartItem.product.price}}</p>
+
+    <div *ngIf="cartItem.product.isLimited; then limited else unlimited"></div>
+    <ng-template #limited>
+      <mat-form-field>
+        <mat-select [value]="cartItem.amount" (valueChange)="updateAmount($event)">
+          <mat-option *ngFor="let value of selectOptions" [value]="value">{{value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-template>
+    <ng-template #unlimited>
+        <div class="ui transparent input">
+          <input type="number" min="1" value="{{cartItem.amount}}" (change)="updateAmount($event.target.value)">
+        </div>
+    </ng-template>
+  </div>
+</div>
