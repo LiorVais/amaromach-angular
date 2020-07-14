@@ -8,7 +8,7 @@
                    class="item"></app-cart-item>
   </div>
 
-  <p>Total Price: <i class="shekel icon"></i>{{cartService.getTotalPrice() | number : '.2'}}</p>
+  <p>Total Price: {{cartService.totalPrice$| async | currency :'ILS'}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-dialog-close class="ui button black">continue shopping</button>

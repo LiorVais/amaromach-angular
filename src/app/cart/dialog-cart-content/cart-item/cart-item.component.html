@@ -6,7 +6,7 @@
   <a class="header">{{cartItem.product.name}}</a>
   <div class="description">
     <p>{{cartItem.product.description}}</p>
-    <p><i class="shekel icon"></i>{{cartItem.product.price}}</p>
+    <p>{{cartItem.product.price | currency :'ILS'}}</p>
 
     <div *ngIf="cartItem.product.isLimited; then limited else unlimited"></div>
     <ng-template #limited>

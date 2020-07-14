@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Product, ProductsService} from '../../core/services/products.service';
+import {ProductsService} from '../services/products.service';
+import {Product} from '../modals/product';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-product-view',
@@ -8,13 +10,13 @@ import {Product, ProductsService} from '../../core/services/products.service';
   styleUrls: ['./product-view.component.less']
 })
 export class ProductViewComponent implements OnInit {
-  public product: Product;
+  public product: Observable<Product>;
 
   constructor(private route: ActivatedRoute, private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.product = this.productsService.getProductById(+params.get('productId'));
+      this.product = this.productsService.getProductById$(+params.get('productId'));
     });
   }
 

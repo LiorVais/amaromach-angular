@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CartItem, CartService} from '../../core/services/cart.service';
+import {CartService} from '../../services/cart.service';
+import {CartItem} from "../../modals/cart-item";
 
 @Component({
   selector: 'app-cart-item',
@@ -18,7 +19,7 @@ export class CartItemComponent implements OnInit {
     this.selectOptions = Array(this.cartItem.product.stock).fill(0).map((x, i: number) => i + 1);
   }
 
-  updateAmount(amount: number): void {
-    this.cartItem.amount = Number(amount);
+  updateAmount(amount: number | string): void {
+    this.cartService.updateAmount(this.cartItem.product, Number(amount));
   }
 }

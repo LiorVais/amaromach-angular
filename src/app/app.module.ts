@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CoreModule } from './core/core.module';
-import { HomeModule } from './shared/home.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { HomeModule } from './shared/home.module';
     AppRoutingModule,
     ProductsModule,
     CoreModule,
-    HomeModule,
+    SharedModule,
     BrowserAnimationsModule,
     MatSelectModule
   ],

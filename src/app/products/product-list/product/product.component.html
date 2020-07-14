@@ -10,16 +10,15 @@
     <div class="description">{{product.description}}</div>
   </div>
   <div class="extra content">
-    <p><i class="shekel icon"></i>{{product.price | number :'.2'}}</p>
-    <!--<div class="ui star rating" data-rating="3" data-max-rating="5"></div>-->
-    <div *ngIf="cartService.hasProduct(product);then remove else add"></div>
+    <p>{{product.price | currency :'ILS'}}</p>
+    <div *ngIf="isInCart;then remove else add"></div>
     <ng-template #add>
-      <button class="ui right floated button primary" (click)="cartService.addToCart(product)" [disabled]="!isInStock">
+      <button class="ui right floated button primary" (click)="onAdd.emit()" [disabled]="!isInStock">
         Add to cart
       </button>
     </ng-template>
     <ng-template #remove>
-      <button class="ui right floated button black" (click)="cartService.removeFromCart(product)">Remove from cart
+      <button class="ui right floated button black" (click)="onRemove.emit()">Remove from cart
       </button>
     </ng-template>
   </div>

@@ -11,7 +11,7 @@ export class JsonReaderService {
     private http: HttpClient,
   ) {}
 
-  getData(url: string): Observable<any> {
-    return this.http.get(url);
+  getData<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
   }
 }
