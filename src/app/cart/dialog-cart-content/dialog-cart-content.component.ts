@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Product} from '../../products/modals/product';
+import {Product} from '../../products/models/product';
 import {CartService} from '../services/cart.service';
 
 export interface DialogData {

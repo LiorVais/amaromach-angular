@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ProductsService} from '../../products/services/products.service';
-import {Product} from '../../products/modals/product';
-import {CartItem} from "../modals/cart-item";
+import {Product} from '../../products/models/product';
+import {CartItem} from "../models/cart-item";
 import {map} from "rxjs/operators";
 
 @Injectable()

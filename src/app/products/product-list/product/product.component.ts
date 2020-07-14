@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
-import {CartService} from '../../../cart/services/cart.service';
-import {Product} from '../../modals/product';
+import {Output, EventEmitter} from '@angular/core';
+import {Product} from '../../models/product';
 
 @Component({
   selector: 'app-product',
@@ -14,8 +13,4 @@ export class ProductComponent {
   @Input() isInCart: boolean;
   @Output() onAdd = new EventEmitter();
   @Output() onRemove = new EventEmitter();
-
-  constructor(public cartService: CartService) {
-  }
-
 }

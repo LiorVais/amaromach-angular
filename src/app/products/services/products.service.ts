@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {JsonReaderService} from '../../core/services/json-reader.service';
-import {Product} from '../modals/product';
+import {Product} from '../models/product';
 
 @Injectable()
 export class ProductsService {
