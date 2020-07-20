@@ -5,7 +5,10 @@ import {ProductListComponent} from './product-list/product-list.component';
 import {ProductViewComponent} from './product-view/product-view.component';
 import {RouterModule} from '@angular/router';
 import {ProductsService} from "./services/products.service";
-
+import * as fromProducts from './reducers/products.reducer';
+import {StoreModule} from "@ngrx/store";
+import {ProductsEffects} from "./effects/products.effects";
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [ProductComponent, ProductListComponent, ProductViewComponent],
@@ -16,7 +19,9 @@ import {ProductsService} from "./services/products.service";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    StoreModule.forFeature(fromProducts.productsFeatureKey, fromProducts.reducer),
+    EffectsModule.forFeature([ProductsEffects]),
   ]
 })
 export class ProductsModule {
