@@ -16,7 +16,7 @@ export class ProductsEffects {
     this.actions$.pipe(
       ofType(ProductListPageActions.enter),
       switchMap(() =>
-        this.productsService.products$.pipe(
+        this.productsService.getProducts().pipe(
           map((products: Product[]) =>
             ProductsCollectionActions.loadProductsSuccess({products})
           ),

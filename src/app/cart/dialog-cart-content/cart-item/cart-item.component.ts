@@ -1,6 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CartService} from '../../services/cart.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartItem} from "../../models/cart-item";
+import * as fromProducts from '../../../products/reducers';
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
+import {Product} from "../../../products/models/product";
 
 @Component({
   selector: 'app-cart-item',
@@ -9,17 +13,21 @@ import {CartItem} from "../../models/cart-item";
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
+  @Output() onRemove = new EventEmitter();
+  @Output() onAmountUpdate = new EventEmitter();
 
-  public selectOptions: number[];
+  public selectOptions$: Observable<number[]>;
+  public product$: Observable<Product>;
 
-  constructor(public cartService: CartService) {
+  constructor(private productsStore: Store<fromProducts.ProductsState>) {
   }
 
   ngOnInit(): void {
-    this.selectOptions = Array(this.cartItem.product.stock).fill(0).map((x, i: number) => i + 1);
+    this.product$ = this.productsStore.select(fromProducts.selectProductById(this.cartItem.productId));
+    this.selectOptions$ = this.product$.pipe(map(product => Array(product.stock).fill(0).map((x, i: number) => i + 1)));
   }
 
   updateAmount(amount: number | string): void {
-    this.cartService.updateAmount(this.cartItem.product, Number(amount));
+    this.onAmountUpdate.emit(Number(amount));
   }
 }

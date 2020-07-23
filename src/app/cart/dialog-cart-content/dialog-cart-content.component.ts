@@ -1,11 +1,10 @@
-import {Component, Inject} from '@angular/core';
-import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Product} from '../../products/models/product';
-import {CartService} from '../services/cart.service';
-
-export interface DialogData {
-  products: Product[];
-}
+import {Component} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {CartActions} from "../actions";
+import {select, Store} from "@ngrx/store";
+import * as fromCart from "../reducers";
+import {Observable} from "rxjs";
+import {CartItem} from "../models/cart-item";
 
 @Component({
   selector: 'app-dialog-cart-content',
@@ -13,13 +12,26 @@ export interface DialogData {
   styleUrls: ['./dialog-cart-content.component.less']
 })
 export class DialogCartContentComponent {
+  totalPrice$: Observable<number>;
+  cartContent$: Observable<CartItem[]>;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogCartContentComponent>, public cartService: CartService) {
+    public dialogRef: MatDialogRef<DialogCartContentComponent>,
+    private cartStore: Store<fromCart.CartState>) {
+    this.totalPrice$ = cartStore.pipe(select(fromCart.selectTotalPrice));
+    this.cartContent$ = cartStore.pipe(select(fromCart.selectAllCartItems));
+  }
+
+  updateAmount(id: string, amount: number) {
+    this.cartStore.dispatch(CartActions.updateCartItem({update: {id, changes:{amount}}}));
+  }
+
+  removeFromCart(id: string) {
+    this.cartStore.dispatch(CartActions.removeCartItem({id}));
   }
 
   checkout(): void {
-    this.cartService.checkOut();
+    this.cartStore.dispatch(CartActions.checkout());
     this.dialogRef.close();
   }
 }

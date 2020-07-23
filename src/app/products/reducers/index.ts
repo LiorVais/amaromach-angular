@@ -16,18 +16,12 @@ export const selectUserEntities = createSelector(
   fromProducts.selectProductsEntities
 );
 
-export const selectCurrentProductId = createSelector(
-  selectProductsState,
-  fromProducts.getSelectedProductId
-);
-
 export const selectAllProducts = createSelector(
   selectProductsState,
   fromProducts.selectAllProducts
 );
 
-export const selectCurrentProduct = createSelector(
+export const selectProductById = (id) => createSelector(
   selectUserEntities,
-  selectCurrentProductId,
-  (productEntities, productId) => productEntities[productId]
+  (products) => products[id]
 );

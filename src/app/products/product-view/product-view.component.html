@@ -1,12 +1,12 @@
   <div class="ui item">
     <div class="ui medium image">
-      <img src="assets/images/{{(product | async).image}}">
+      <img src="assets/images/{{(product$ | async).image}}">
     </div>
     <div class="content">
-      <div class="ui header">{{(product | async).name}}</div>
+      <div class="ui header">{{(product$ | async).name}}</div>
       <div class="description">
-        <p>{{(product | async).price | currency :'ILS'}}</p>
-        <p>{{(product | async).description}}</p>
+        <p>{{(product$ | async).price | currency :'ILS'}}</p>
+        <p>{{(product$ | async).description}}</p>
       </div>
     </div>
   </div>

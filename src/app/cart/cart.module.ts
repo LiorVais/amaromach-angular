@@ -5,13 +5,15 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
 import {CartButtonComponent} from './cart-button/cart-button.component';
 import {DialogCartContentComponent} from './dialog-cart-content/dialog-cart-content.component';
-import {CartService} from './services/cart.service';
 import { CartItemComponent } from './dialog-cart-content/cart-item/cart-item.component';
+import {StoreModule} from '@ngrx/store';
+import * as fromCart from './reducers/cart.reducer';
+import {EffectsModule} from "@ngrx/effects";
+import {CartEffects} from "./effects/cart.effects";
 
 
 @NgModule({
   declarations: [CartButtonComponent, DialogCartContentComponent, CartItemComponent],
-  providers: [CartService],
   exports: [
     CartButtonComponent
   ],
@@ -19,7 +21,9 @@ import { CartItemComponent } from './dialog-cart-content/cart-item/cart-item.com
     CommonModule,
     MatDialogModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
+    StoreModule.forFeature(fromCart.cartFeatureKey, fromCart.reducer),
+    EffectsModule.forFeature([CartEffects]),
   ]
 })
 export class CartModule {

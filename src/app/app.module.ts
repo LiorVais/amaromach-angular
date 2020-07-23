@@ -11,6 +11,8 @@ import { ProductsModule } from './products/products.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import {EffectsModule} from "@ngrx/effects";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -27,6 +29,10 @@ import {EffectsModule} from "@ngrx/effects";
     MatSelectModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
