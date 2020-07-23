@@ -1,5 +1,5 @@
-import {Action, createReducer, on} from "@ngrx/store";
-import {ProductActions, ProductsCollectionActions} from "../actions";
+import {Action, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
+import * as ProductActions from "../actions/product.actions";
 import {createEntityAdapter, EntityAdapter, EntityState, Update} from "@ngrx/entity";
 import {Product} from "../models/product";
 
@@ -17,14 +17,11 @@ export const initialState: ProductsState = adapter.getInitialState();
 export const productsReducer = createReducer(
   initialState,
   on(
-    ProductsCollectionActions.loadProductsSuccess,
+    ProductActions.loadProductsSuccess,
     (state, {products}) => adapter.addMany(products, state)),
   on(
     ProductActions.updateProduct,
     (state, product: Update<Product>) => adapter.updateOne(product, state)),
-  on(
-    ProductActions.selectProduct,
-    (state, {id}) => ({...state, selectedProductId: id})),
   on(
     ProductActions.buyProduct,
     (state, {id, amount}) => {
@@ -42,13 +39,23 @@ export function reducer(state: ProductsState | undefined, action: Action) {
 }
 
 const {
-  selectIds,
   selectEntities,
   selectAll,
-  selectTotal,
 } = adapter.getSelectors();
 
-export const selectProductsIds = selectIds;
-export const selectProductsEntities = selectEntities;
-export const selectAllProducts = selectAll;
-export const selectProductsTotal = selectTotal;
+export const selectProductsState = createFeatureSelector<ProductsState>('products');
+
+export const selectUserEntities = createSelector(
+  selectProductsState,
+  selectEntities
+);
+
+export const selectAllProducts = createSelector(
+  selectProductsState,
+  selectAll
+);
+
+export const selectProductById = createSelector(
+  selectUserEntities,
+  (products, props) => products[props.id]
+);

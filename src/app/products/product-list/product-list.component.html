@@ -1,7 +1,7 @@
 <div id="cards-grid" class="ui cards four column stretched grid">
   <app-product class="column" *ngFor="let product of products$ | async"
                [isInStock]="productsService.isInStock(product)"
-               [isInCart]="isProductInCart(product) | async"
+               [isInCart]="isProductInCart$(product) | async"
                [product]="product"
                (onAdd)="addToCart(product)"
                (onRemove)="removeFromCart(product)"></app-product>

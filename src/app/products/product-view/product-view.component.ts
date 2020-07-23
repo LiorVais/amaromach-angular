@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from '../models/product';
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import * as fromProducts from "../reducers";
+import {ProductsState, selectProductById} from "../reducers/products.reducer";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -13,11 +13,11 @@ import {ActivatedRoute} from "@angular/router";
 export class ProductViewComponent implements OnInit {
   public product$: Observable<Product>;
 
-  constructor(private route: ActivatedRoute, private productsStore: Store<fromProducts.ProductsState>) { }
+  constructor(private route: ActivatedRoute, private productsStore: Store<ProductsState>) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.product$ = this.productsStore.select(fromProducts.selectProductById(+params.get('productId')))
+      this.product$ = this.productsStore.select(selectProductById, {id: +params.get('productId')});
     });
   }
 

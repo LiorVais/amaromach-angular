@@ -1,4 +1,4 @@
-import {Action, createReducer, on} from "@ngrx/store";
+import {Action, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
 import {CartActions} from "../actions";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {CartItem} from "../models/cart-item";
@@ -15,7 +15,7 @@ export const adapter: EntityAdapter<CartItem> = createEntityAdapter<CartItem>({
 
 export const initialState: CartItemsState = adapter.getInitialState();
 
-export const cartReducer = createReducer(
+export const reducer = createReducer(
   initialState,
   on(
     CartActions.addProductToCart,
@@ -34,10 +34,6 @@ export const cartReducer = createReducer(
     (state) => adapter.removeAll(state)),
 );
 
-export function reducer(state: CartItemsState | undefined, action: Action) {
-  return cartReducer(state, action)
-}
-
 const {
   selectIds,
   selectEntities,
@@ -45,7 +41,29 @@ const {
   selectTotal,
 } = adapter.getSelectors();
 
-export const selectCartItemsIds = selectIds;
-export const selectCartItemsEntities = selectEntities;
-export const selectAllCartItems = selectAll;
-export const selectCartItemsTotal = selectTotal;
+export const selectCartState = createFeatureSelector<CartItemsState>('cart');
+
+export const selectCartEntities = createSelector(
+  selectCartState,
+  selectEntities
+);
+
+export const selectAllCartItems = createSelector(
+  selectCartState,
+  selectAll
+);
+
+export const selectCartItemsTotal = createSelector(
+  selectCartState,
+  selectTotal
+);
+
+export const selectCartItemsIds = createSelector(
+  selectCartState,
+  selectIds
+);
+
+export const selectTotalPrice = createSelector(
+  selectAllCartItems,
+  (cartItems) => cartItems.reduce((acc, item) => acc + (item.price * item.amount), 0)
+);

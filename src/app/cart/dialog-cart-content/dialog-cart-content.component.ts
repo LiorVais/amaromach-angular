@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {CartActions} from "../actions";
 import {select, Store} from "@ngrx/store";
-import * as fromCart from "../reducers";
+import {selectTotalPrice, selectAllCartItems, CartItemsState} from "../reducers/cart.reducer";
 import {Observable} from "rxjs";
 import {CartItem} from "../models/cart-item";
 
@@ -17,13 +17,13 @@ export class DialogCartContentComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogCartContentComponent>,
-    private cartStore: Store<fromCart.CartState>) {
-    this.totalPrice$ = cartStore.pipe(select(fromCart.selectTotalPrice));
-    this.cartContent$ = cartStore.pipe(select(fromCart.selectAllCartItems));
+    private cartStore: Store<CartItemsState>) {
+    this.totalPrice$ = cartStore.pipe(select(selectTotalPrice));
+    this.cartContent$ = cartStore.pipe(select(selectAllCartItems));
   }
 
   updateAmount(id: string, amount: number) {
-    this.cartStore.dispatch(CartActions.updateCartItem({update: {id, changes:{amount}}}));
+    this.cartStore.dispatch(CartActions.updateCartItem({update: {id, changes: {amount}}}));
   }
 
   removeFromCart(id: string) {

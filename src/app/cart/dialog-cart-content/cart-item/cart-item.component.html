@@ -1,25 +1,27 @@
-<div class="image">
-  <img src="assets/images/{{(product$ | async).image}}">
-</div>
-<div class="content">
-  <i class="ui large close icon link red right floated" (click)="onRemove.emit()"></i>
-  <a class="header">{{(product$ | async).name}}</a>
-  <div class="description">
-    <p>{{(product$ | async).description}}</p>
-    <p>{{(product$ | async).price | currency :'ILS'}}</p>
+<ng-container *ngIf="(product$ | async) as product">
+  <div class="image">
+    <img src="assets/images/{{product.image}}">
+  </div>
+  <div class="content">
+    <i class="ui large close icon link red right floated" (click)="onRemove.emit()"></i>
+    <a class="header">{{product.name}}</a>
+    <div class="description">
+      <p>{{product.description}}</p>
+      <p>{{product.price | currency :'ILS'}}</p>
 
-    <div *ngIf="(product$ | async).isLimited; then limited else unlimited"></div>
-    <ng-template #limited>
-      <mat-form-field>
-        <mat-select [value]="cartItem.amount" (valueChange)="updateAmount($event)">
-          <mat-option *ngFor="let value of selectOptions$ | async" [value]="value">{{value}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </ng-template>
-    <ng-template #unlimited>
+      <div *ngIf="product.isLimited; then limited else unlimited"></div>
+      <ng-template #limited>
+        <mat-form-field>
+          <mat-select [value]="cartItem.amount" (valueChange)="updateAmount($event)">
+            <mat-option *ngFor="let value of selectOptions$ | async" [value]="value">{{value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ng-template>
+      <ng-template #unlimited>
         <div class="ui transparent input">
           <input type="number" min="1" value="{{cartItem.amount}}" (change)="updateAmount($event.target.value)">
         </div>
-    </ng-template>
+      </ng-template>
+    </div>
   </div>
-</div>
+</ng-container>
