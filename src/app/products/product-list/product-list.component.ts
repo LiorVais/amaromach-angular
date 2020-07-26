@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {Product} from '../models/product';
-import {select, Store} from '@ngrx/store';
-import {ProductsState, selectAllProducts} from '../reducers/products.reducer';
-import {selectAllCartItems} from '../../cart/reducers/cart.reducer';
-import {Observable} from 'rxjs';
-import {ProductsService} from '../services/products.service';
-import * as CartActions from "../../cart/actions/cart.actions";
-import {map} from "rxjs/operators";
+import { Product } from '../models/product';
+import { select, Store } from '@ngrx/store';
+import { ProductsState, selectAllProducts } from '../reducers/products.reducer';
+import { selectAllCartItems } from '../../cart/reducers/cart.reducer';
+import { Observable } from 'rxjs';
+import { ProductsService } from '../services/products.service';
+import * as CartActions from '../../cart/actions/cart.actions';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',

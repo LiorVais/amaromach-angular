@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
-import * as CartActions from "../actions/cart.actions";
-import {select, Store} from "@ngrx/store";
-import {selectAllCartItems, CartItemsState} from "../reducers/cart.reducer";
-import {Observable, combineLatest} from "rxjs";
-import {CartItem} from "../models/cart-item";
-import {ProductsState, selectProductById, selectAllProducts} from "../../products/reducers/products.reducer";
-import {Product} from "../../products/models/product";
-import {map} from "rxjs/operators";
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import * as CartActions from '../actions/cart.actions';
+import { select, Store } from '@ngrx/store';
+import { CartItemsState, selectAllCartItems } from '../reducers/cart.reducer';
+import { combineLatest, Observable } from 'rxjs';
+import { CartItem } from '../models/cart-item';
+import { ProductsState, selectAllProducts, selectProductById } from '../../products/reducers/products.reducer';
+import { Product } from '../../products/models/product';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dialog-cart-content',

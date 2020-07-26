@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {JsonReaderService} from '../../core/services/json-reader.service';
-import {Product} from '../models/product';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { JsonReaderService } from '../../core/services/json-reader.service';
+import { Product } from '../models/product';
 
 @Injectable()
 export class ProductsService {

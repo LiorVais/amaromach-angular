@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {DialogCartContentComponent} from '../dialog-cart-content/dialog-cart-content.component';
-import {MatDialog} from '@angular/material/dialog';
-import {select, Store} from "@ngrx/store";
-import {CartItemsState, selectCartItemsTotal} from '../reducers/cart.reducer';
-import {Observable} from "rxjs";
+import { Component } from '@angular/core';
+import { DialogCartContentComponent } from '../dialog-cart-content/dialog-cart-content.component';
+import { MatDialog } from '@angular/material/dialog';
+import { select, Store } from '@ngrx/store';
+import { CartItemsState, selectCartItemsTotal } from '../reducers/cart.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart-button',

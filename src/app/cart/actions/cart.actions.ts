@@ -1,7 +1,7 @@
-import {createAction, props} from '@ngrx/store';
-import {CartItem} from '../models/cart-item';
-import {Product} from "../../products/models/product";
-import {Update} from "@ngrx/entity";
+import { createAction, props } from '@ngrx/store';
+import { CartItem } from '../models/cart-item';
+import { Product } from '../../products/models/product';
+import { Update } from '@ngrx/entity';
 
 export enum ActionTypes {
   ADD_PRODUCT_TO_CART = '[Cart] Add Product To Cart',

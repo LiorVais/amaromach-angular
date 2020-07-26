@@ -1,5 +1,5 @@
-import {createAction, props} from '@ngrx/store';
-import {Product} from '../models/product';
+import { createAction, props } from '@ngrx/store';
+import { Product } from '../models/product';
 
 export enum ActionTypes {
   UPDATE_PRODUCT = '[Products] Update Product',

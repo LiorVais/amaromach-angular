@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import {EffectsModule} from "@ngrx/effects";
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 

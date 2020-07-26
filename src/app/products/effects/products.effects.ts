@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {Actions, createEffect, ofType, OnInitEffects} from '@ngrx/effects';
-import {of} from 'rxjs';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import { Actions, createEffect, ofType, OnInitEffects } from '@ngrx/effects';
+import { of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 import * as ProductActions from '../actions/product.actions';
-import {Product} from '../models/product';
-import {ProductsService} from '../services/products.service';
-import {Action} from "@ngrx/store";
+import { Product } from '../models/product';
+import { ProductsService } from '../services/products.service';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class ProductsEffects implements OnInitEffects {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from '../models/product';
-import {Observable} from "rxjs";
-import {Store} from "@ngrx/store";
-import {ProductsState, selectProductById} from "../reducers/products.reducer";
-import {ActivatedRoute} from "@angular/router";
+import { Product } from '../models/product';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { ProductsState, selectProductById } from '../reducers/products.reducer';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-view',
