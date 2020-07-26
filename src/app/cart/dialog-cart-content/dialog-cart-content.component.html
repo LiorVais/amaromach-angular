@@ -4,7 +4,9 @@
 </div>
 <mat-dialog-content>
   <div class="ui divided items">
-    <app-cart-item *ngFor="let cartItem of cartContent$ | async" [cartItem]="cartItem"
+    <app-cart-item *ngFor="let cartItem of cartContent$ | async"
+                   [cartItem]="cartItem"
+                   [product]="getProduct$(cartItem.productId) | async"
                    (onRemove)="removeFromCart(cartItem.productId)"
                    (onAmountUpdate)="updateAmount(cartItem.productId, $event)"
                    class="item"></app-cart-item>

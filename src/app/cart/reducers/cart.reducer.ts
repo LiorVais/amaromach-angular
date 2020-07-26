@@ -1,5 +1,5 @@
-import {Action, createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
-import {CartActions} from "../actions";
+import {createFeatureSelector, createReducer, createSelector, on} from "@ngrx/store";
+import * as CartActions from "../actions/cart.actions";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
 import {CartItem} from "../models/cart-item";
 

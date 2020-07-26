@@ -1,7 +1,7 @@
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {map, tap, withLatestFrom} from 'rxjs/operators';
+import {map, mergeMap, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 
-import {CartActions} from "../actions";
+import * as CartActions from "../actions/cart.actions";
 import {Injectable} from "@angular/core";
 import {Store} from "@ngrx/store";
 import {CartItemsState, selectAllCartItems} from "../reducers/cart.reducer";
@@ -17,11 +17,11 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.checkout),
       withLatestFrom(this.cartStore.select(selectAllCartItems)),
-      tap(([action, cartItems]) => cartItems.forEach(item => this.productsStore.dispatch(ProductActions.buyProduct({
+      mergeMap(([action, cartItems]) => [...cartItems.map(item => ProductActions.buyProduct({
         id: item.productId,
         amount: item.amount
-      })))),
-      map(CartActions.checkoutSuccess)
+      })),
+      CartActions.checkoutSuccess()]),
     )
   );
 }

@@ -1,5 +1,4 @@
-<ng-container *ngIf="(product$ | async) as product">
-  <div class="image">
+<div class="image">
     <img src="assets/images/{{product.image}}">
   </div>
   <div class="content">
@@ -13,7 +12,7 @@
       <ng-template #limited>
         <mat-form-field>
           <mat-select [value]="cartItem.amount" (valueChange)="updateAmount($event)">
-            <mat-option *ngFor="let value of selectOptions$ | async" [value]="value">{{value}}</mat-option>
+            <mat-option *ngFor="let value of selectOptions" [value]="value">{{value}}</mat-option>
           </mat-select>
         </mat-form-field>
       </ng-template>
@@ -24,4 +23,3 @@
       </ng-template>
     </div>
   </div>
-</ng-container>

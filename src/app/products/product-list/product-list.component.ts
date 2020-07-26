@@ -6,7 +6,7 @@ import {ProductsState, selectAllProducts} from '../reducers/products.reducer';
 import {selectAllCartItems} from '../../cart/reducers/cart.reducer';
 import {Observable} from 'rxjs';
 import {ProductsService} from '../services/products.service';
-import {CartActions} from "../../cart/actions";
+import * as CartActions from "../../cart/actions/cart.actions";
 import {map} from "rxjs/operators";
 
 @Component({

@@ -1,9 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartItem} from "../../models/cart-item";
-import {ProductsState, selectProductById} from '../../../products/reducers/products.reducer';
-import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
 import {Product} from "../../../products/models/product";
 
 @Component({
@@ -13,18 +9,17 @@ import {Product} from "../../../products/models/product";
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
+  @Input() product: Product;
   @Output() onRemove = new EventEmitter();
   @Output() onAmountUpdate = new EventEmitter();
 
-  public selectOptions$: Observable<number[]>;
-  public product$: Observable<Product>;
+  public selectOptions: number[];
 
-  constructor(private productsStore: Store<ProductsState>) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.product$ = this.productsStore.select(selectProductById, {id: this.cartItem.productId});
-    this.selectOptions$ = this.product$.pipe(map(product => Array(product.stock).fill(0).map((x, i: number) => i + 1)));
+    this.selectOptions = Array(this.product.stock).fill(0).map((x, i: number) => i + 1);
   }
 
   updateAmount(amount: number | string): void {
