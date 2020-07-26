@@ -2,11 +2,12 @@ import {Component} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import * as CartActions from "../actions/cart.actions";
 import {select, Store} from "@ngrx/store";
-import {selectTotalPrice, selectAllCartItems, CartItemsState} from "../reducers/cart.reducer";
-import {Observable} from "rxjs";
+import {selectAllCartItems, CartItemsState} from "../reducers/cart.reducer";
+import {Observable, combineLatest} from "rxjs";
 import {CartItem} from "../models/cart-item";
-import {ProductsState, selectProductById} from "../../products/reducers/products.reducer";
+import {ProductsState, selectProductById, selectAllProducts} from "../../products/reducers/products.reducer";
 import {Product} from "../../products/models/product";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-dialog-cart-content',
@@ -21,8 +22,15 @@ export class DialogCartContentComponent {
     public dialogRef: MatDialogRef<DialogCartContentComponent>,
     private productsStore: Store<ProductsState>,
     private cartStore: Store<CartItemsState>) {
-    this.totalPrice$ = cartStore.pipe(select(selectTotalPrice));
     this.cartContent$ = cartStore.pipe(select(selectAllCartItems));
+    this.totalPrice$ = combineLatest([
+      cartStore.pipe(select(selectAllCartItems)),
+      productsStore.select(selectAllProducts)
+    ]).pipe(map(([cartItems, products]) =>
+      cartItems.reduce((total: number, cartItem: CartItem) =>
+        total += (products.find((product: Product) => product.id === cartItem.productId).price * cartItem.amount)
+    , 0)
+    ));
   }
 
   updateAmount(id: string, amount: number): void {

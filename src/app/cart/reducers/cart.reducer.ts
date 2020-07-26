@@ -20,7 +20,7 @@ export const reducer = createReducer(
   on(
     CartActions.addProductToCart,
     (state, {product}) => {
-      const cartItem: CartItem = {productId: product.id, price: product.price, amount: 1};
+      const cartItem: CartItem = {productId: product.id, amount: 1};
       return adapter.addOne(cartItem, state)
     }),
   on(
@@ -35,7 +35,6 @@ export const reducer = createReducer(
 );
 
 const {
-  selectIds,
   selectEntities,
   selectAll,
   selectTotal,
@@ -56,14 +55,4 @@ export const selectAllCartItems = createSelector(
 export const selectCartItemsTotal = createSelector(
   selectCartState,
   selectTotal
-);
-
-export const selectCartItemsIds = createSelector(
-  selectCartState,
-  selectIds
-);
-
-export const selectTotalPrice = createSelector(
-  selectAllCartItems,
-  (cartItems) => cartItems.reduce((acc, item) => acc + (item.price * item.amount), 0)
 );
