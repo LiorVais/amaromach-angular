@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CartService} from '../../services/cart.service';
-import {CartItem} from "../../models/cart-item";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CartItem } from '../../models/cart-item';
+import { Product } from '../../../products/models/product';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,17 +9,20 @@ import {CartItem} from "../../models/cart-item";
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
+  @Input() product: Product;
+  @Output() onRemove = new EventEmitter();
+  @Output() onAmountUpdate = new EventEmitter();
 
   public selectOptions: number[];
 
-  constructor(public cartService: CartService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.selectOptions = Array(this.cartItem.product.stock).fill(0).map((x, i: number) => i + 1);
+    this.selectOptions = Array(this.product.stock).fill(0).map((x, i: number) => i + 1);
   }
 
   updateAmount(amount: number | string): void {
-    this.cartService.updateAmount(this.cartItem.product, Number(amount));
+    this.onAmountUpdate.emit(Number(amount));
   }
 }

@@ -1,12 +1,12 @@
-  <div class="ui item">
+<div class="ui item" *ngIf="(product$ | async) as product">
     <div class="ui medium image">
-      <img src="assets/images/{{(product | async).image}}">
+      <img src="assets/images/{{product.image}}">
     </div>
     <div class="content">
-      <div class="ui header">{{(product | async).name}}</div>
+      <div class="ui header">{{product.name}}</div>
       <div class="description">
-        <p>{{(product | async).price | currency :'ILS'}}</p>
-        <p>{{(product | async).description}}</p>
+        <p>{{product.price | currency :'ILS'}}</p>
+        <p>{{product.description}}</p>
       </div>
     </div>
   </div>

@@ -4,11 +4,15 @@
 </div>
 <mat-dialog-content>
   <div class="ui divided items">
-    <app-cart-item *ngFor="let cartItem of cartService.cartContent$ | async" [cartItem]="cartItem"
+    <app-cart-item *ngFor="let cartItem of cartContent$ | async"
+                   [cartItem]="cartItem"
+                   [product]="getProduct$(cartItem.productId) | async"
+                   (onRemove)="removeFromCart(cartItem.productId)"
+                   (onAmountUpdate)="updateAmount(cartItem.productId, $event)"
                    class="item"></app-cart-item>
   </div>
 
-  <p>Total Price: {{cartService.totalPrice$| async | currency :'ILS'}}</p>
+  <p>Total Price: {{ totalPrice$| async | currency :'ILS' }}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-dialog-close class="ui button black">continue shopping</button>
